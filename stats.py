@@ -12,10 +12,12 @@ def variance(m, v):
     """
     >>> v = [1, 3, 4.5, 6.5]
     >>> m = mean(v)
-    >>> variance(m, v) == sqrt((1 - m)**2 + (3 - m)**2 + (4.5 - m)**2 + (6.5 -m)**2)
-    True
+    >>> (1.0 / 4) * sqrt((1 - m)**2 + (3 - m)**2 + (4.5 - m)**2 + (6.5 - m)**2)
+    1.0077822185373186
+    >>> variance(m, v)
+    1.0077822185373186
     """
-    return sqrt(sum((e - m)**2 for e in v))
+    return (1.0 / len(v)) * sqrt(sum((e - m)**2 for e in v))
 
 
 def median(v):
