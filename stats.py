@@ -5,7 +5,7 @@ def mean(v):
      >>> mean([1, 3, 4.5, 5]) == (1 + 3 + 4.5 + 5) / 4.0
      True
      """
-     return sum(float(e) for e in v) / len(v)
+     return sum(e for e in v) / float(len(v))
 
 
 def variance(m, v):
