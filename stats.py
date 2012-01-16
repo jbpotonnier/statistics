@@ -41,6 +41,16 @@ def quartil_1(v):
     index = int(ceil(len(v) / 4)) - 1
     return sorted(v)[index]
 
+
+def quartil_3(v):
+    """
+    >>> v = [20, 11, 19, 24, 28, 1, 34, 37, 15, 47, 50, 57]
+    >>> quartil_3(v)
+    37
+    """
+    index = (int(ceil(len(v) / 4)) * 3) - 1
+    return sorted(v)[index]
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
