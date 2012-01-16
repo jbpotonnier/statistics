@@ -12,18 +12,22 @@ def variance(m, v):
     """
     >>> v = [1, 3, 4.5, 6.5]
     >>> m = mean(v)
-    >>> (1.0 / 4) * sqrt((1 - m)**2 + (3 - m)**2 + (4.5 - m)**2 + (6.5 - m)**2)
-    1.0077822185373186
+    >>> (1.0 / 4) * ((1 - m)**2 + (3 - m)**2 + (4.5 - m)**2 + (6.5 - m)**2)
+    4.0625
     >>> variance(m, v)
-    1.0077822185373186
+    4.0625
     """
-    return (1.0 / len(v)) * sqrt(sum((e - m)**2 for e in v))
+    return (1.0 / len(v)) * sum((e - m)**2 for e in v)
 
 
 def mean_var(v):
     """
     >>> mean_var([1, 2, 3, 4])
     (2.5, 1.25)
+    >>> v = [1, 3, 4.5, 6.5]
+    >>> m = mean(v)
+    >>> mean_var(v) == (m, variance(m, v))
+    True
     """
     s = 0
     ss = 0
@@ -35,7 +39,7 @@ def mean_var(v):
     return (m, mss - m**2)
 
 
-def median(v):
+def median(v, already_sorted=False):
     """
     >>> median([12, 5, 6, 89, 5, 2390, 1])
     6
@@ -43,28 +47,41 @@ def median(v):
     5.5
     """
     length = len(v)
-    sorted_v = sorted(v)
+    sorted_v = v if already_sorted else sorted(v)
     return sorted_v[length / 2] if length % 2 != 0 else mean([sorted_v[length/2 - 1], sorted_v[length/2]])
 
 
-def quartil_1(v):
+def quartil_1(v, already_sorted=False):
     """
     >>> v = [20, 11, 19, 24, 28, 1, 34, 37, 15, 47, 50, 57]
     >>> quartil_1(v)
     15
     """
     index = int(ceil(len(v) / 4)) - 1
-    return sorted(v)[index]
+    sorted_v = v if already_sorted else sorted(v)
+    return sorted_v[index]
 
 
-def quartil_3(v):
+def quartil_3(v, already_sorted=False):
     """
     >>> v = [20, 11, 19, 24, 28, 1, 34, 37, 15, 47, 50, 57]
     >>> quartil_3(v)
     37
     """
     index = (int(ceil(len(v) / 4)) * 3) - 1
-    return sorted(v)[index]
+    sorted_v = v if already_sorted else sorted(v)
+    return sorted_v[index]
+
+
+def quartils(v):
+    """
+    >>> v = [20, 11, 19, 24, 28, 1, 34, 37, 15, 47, 50, 57]
+    >>> quartils(v)
+    (15, 26.0, 37)
+    """
+    sorted_v = sorted(v)
+    return (quartil_1(sorted_v, True), median(sorted_v, True), quartil_3(sorted_v, True))
+    
 
 if __name__ == "__main__":
     import doctest
