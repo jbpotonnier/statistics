@@ -51,10 +51,10 @@ def median(v, already_sorted=False):
     return sorted_v[length / 2] if length % 2 != 0 else mean([sorted_v[length/2 - 1], sorted_v[length/2]])
 
 
-def quartil_1(v, already_sorted=False):
+def quartile_1(v, already_sorted=False):
     """
     >>> v = [20, 11, 19, 24, 28, 1, 34, 37, 15, 47, 50, 57]
-    >>> quartil_1(v)
+    >>> quartile_1(v)
     15
     """
     index = int(ceil(len(v) / 4)) - 1
@@ -62,10 +62,10 @@ def quartil_1(v, already_sorted=False):
     return sorted_v[index]
 
 
-def quartil_3(v, already_sorted=False):
+def quartile_3(v, already_sorted=False):
     """
     >>> v = [20, 11, 19, 24, 28, 1, 34, 37, 15, 47, 50, 57]
-    >>> quartil_3(v)
+    >>> quartile_3(v)
     37
     """
     index = (int(ceil(len(v) / 4)) * 3) - 1
@@ -73,14 +73,14 @@ def quartil_3(v, already_sorted=False):
     return sorted_v[index]
 
 
-def quartils(v):
+def quartiles(v):
     """
     >>> v = [20, 11, 19, 24, 28, 1, 34, 37, 15, 47, 50, 57]
-    >>> quartils(v)
+    >>> quartiles(v)
     (15, 26.0, 37)
     """
     sorted_v = sorted(v)
-    return (quartil_1(sorted_v, True), median(sorted_v, True), quartil_3(sorted_v, True))
+    return (quartile_1(sorted_v, True), median(sorted_v, True), quartile_3(sorted_v, True))
     
 
 if __name__ == "__main__":
