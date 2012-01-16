@@ -20,6 +20,21 @@ def variance(m, v):
     return (1.0 / len(v)) * sqrt(sum((e - m)**2 for e in v))
 
 
+def mean_var(v):
+    """
+    >>> mean_var([1, 2, 3, 4])
+    (2.5, 1.25)
+    """
+    s = 0
+    ss = 0
+    for e in v:
+        s += e
+        ss += e**2
+    m = s / float(len(v))
+    mss = ss / float(len(v))
+    return (m, mss - m**2)
+
+
 def median(v):
     """
     >>> median([12, 5, 6, 89, 5, 2390, 1])
