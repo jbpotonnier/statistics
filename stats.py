@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt, ceil
 
 def mean(v):
      """ 
@@ -32,6 +32,14 @@ def median(v):
     return sorted_v[length / 2] if length % 2 != 0 else mean([sorted_v[length/2 - 1], sorted_v[length/2]])
 
 
+def quartil_1(v):
+    """
+    >>> v = [20, 11, 19, 24, 28, 1, 34, 37, 15, 47, 50, 57]
+    >>> quartil_1(v)
+    15
+    """
+    index = int(ceil(len(v) / 4)) - 1
+    return sorted(v)[index]
 
 if __name__ == "__main__":
     import doctest
