@@ -1,4 +1,5 @@
 from math import sqrt, ceil
+import sys
 
 def mean(v):
      """ 
@@ -84,6 +85,16 @@ def quartiles(v):
     
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
-    
+    command = sys.argv[1]
+    if command == 'test':  
+        import doctest
+        doctest.testmod()
+    elif command == 'quartiles':
+        filename, col = sys.argv[2], int(sys.argv[3])
+        data = ( float(line.split()[col]) for line in open(filename).readlines() ) 
+        print '{} {} {}'.format(*quartiles(data))
+    elif command == 'mean_var':
+        filename, col = sys.argv[2], int(sys.argv[3])
+        data = [ float(line.split()[col]) for line in open(filename).readlines() ] 
+        print '{} {}'.format(*mean_var(data))
+
